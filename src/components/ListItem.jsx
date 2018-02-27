@@ -1,4 +1,4 @@
-var react = require('react');
+var React = require('react');
 var createReactClass = require('create-react-class');
 
 var ListItem = createReactClass({
@@ -10,3 +10,4 @@ var ListItem = createReactClass({
     );
   }
 });
+module.exports = ListItem;
