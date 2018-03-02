@@ -19086,25 +19086,52 @@ var ListManager = createReactClass({
     this.setState({ items: currentItems, newItemText: '' });
   },
   render: function () {
+    var divStyle = {
+      marginTop: 10
+    };
+    var headingStyle = {};
+    if (this.props.headingColor) {
+      headingStyle.background = this.props.headingColor;
+    }
     return React.createElement(
       'div',
-      null,
+      { style: divStyle, className: 'col-sm-4' },
       React.createElement(
-        'h3',
-        null,
-        this.props.title
-      ),
-      React.createElement(
-        'form',
-        { onSubmit: this.handleSubmit },
-        React.createElement('input', { onChange: this.onChange, value: this.state.newItemText }),
+        'div',
+        { className: 'panel panel-primary' },
         React.createElement(
-          'button',
-          null,
-          'Add'
-        )
-      ),
-      React.createElement(List, { items: this.state.items })
+          'div',
+          { style: headingStyle, className: 'panel-heading' },
+          React.createElement(
+            'h3',
+            null,
+            this.props.title
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'row panel-body' },
+          React.createElement(
+            'form',
+            { onSubmit: this.handleSubmit },
+            React.createElement(
+              'div',
+              { className: 'col-sm-9' },
+              React.createElement('input', { className: 'form-control', onChange: this.onChange, value: this.state.newItemText })
+            ),
+            React.createElement(
+              'div',
+              { className: 'col-sm-2' },
+              React.createElement(
+                'button',
+                { className: 'btn btn-primary' },
+                'Add'
+              )
+            )
+          )
+        ),
+        React.createElement(List, { items: this.state.items })
+      )
     );
   }
 });
@@ -19116,6 +19143,11 @@ var React = require('react');
 var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var ListManager = require('./components/ListManager.jsx');
+
 ReactDOM.render(React.createElement(ListManager, { title: 'Ingredients' }), document.getElementById('ingredients'));
+
+ReactDOM.render(React.createElement(ListManager, { title: 'ToDo' }), document.getElementById('todo'));
+
+ReactDOM.render(React.createElement(ListManager, { title: 'Christmas', headingColor: '#FF0000' }), document.getElementById('christmas'));
 
 },{"./components/ListManager.jsx":31,"create-react-class":2,"react":28,"react-dom":25}]},{},[32]);
